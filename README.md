@@ -1,5 +1,6 @@
-# adib-portfolio
-This is my portfolio website. domain from ready.bd.
+# Adib's Portfolio Website
+This is my portfolio website.
+sub-domain from ready.bd
 
 ## visit my website
 https://www.adib.pro.bd/
