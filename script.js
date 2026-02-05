@@ -36,3 +36,13 @@ links.forEach((a) => {
 // Load from hash on refresh
 const initial = (location.hash || "#home").replace("#", "");
 showPage(initial);
+
+// Load from hash on refresh
+const initial = (location.hash || "#home").replace("#", "");
+showPage(initial);
+
+fetch("https://api.countapi.xyz/hit/adib.pro.bd/visits")
+  .then((response) => response.json())
+  .then((data) => {
+    document.getElementById("visitor-count").innerText = data.value;
+  });
