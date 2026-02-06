@@ -41,14 +41,6 @@ showPage(initial);
 const initial = (location.hash || "#home").replace("#", "");
 showPage(initial);
 
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://api.countapi.xyz/hit/adib.pro.bd/visits")
-    .then(function (response) { return response.json(); })
-    .then(function (data) {
-      document.getElementById("visitor-count").innerText = data.value;
-    })
-    .catch(function () {
-      document.getElementById("visitor-count").innerText = "—";
-    });
-});
+
+
 
