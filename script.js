@@ -1,46 +1,68 @@
-const links = document.querySelectorAll("[data-page-link]");
-const views = document.querySelectorAll("[data-page]");
+// ===== Page switching (SPA-style) =====
+(function () {
+  const links = Array.from(document.querySelectorAll("[data-page-link]"));
+  const views = Array.from(document.querySelectorAll("[data-page]"));
 
-function showPage(pageName) {
-  // hide all
-  views.forEach((v) => v.classList.remove("is-visible"));
+  function showPage(pageName) {
+    // Fallback
+    const page = pageName && pageName.trim() ? pageName.trim() : "home";
 
-  // show selected
-  const target = document.querySelector(`[data-page="${pageName}"]`);
-  if (target) target.classList.add("is-visible");
+    // Hide all views
+    views.forEach((v) => v.classList.remove("is-visible"));
 
-  // active nav highlight (only on About/Works/Services/Contact)
-  links.forEach((a) => a.classList.remove("is-active"));
-  const active = document.querySelector(`[data-page-link="${pageName}"]`);
-  if (active) active.classList.add("is-active");
-}
+    // Show selected
+    const target = document.querySelector(`[data-page="${page}"]`);
+    if (target) target.classList.add("is-visible");
 
-// Click handling
-links.forEach((a) => {
-  a.addEventListener("click", (e) => {
-    e.preventDefault();
-    const page = a.getAttribute("data-page-link");
+    // Update active nav
+    links.forEach((a) => a.classList.remove("is-active"));
+    const active = document.querySelector(`[data-page-link="${page}"]`);
+    if (active) active.classList.add("is-active");
+  }
 
-    // If they click the logo (home), show home and also clear active if you want
-    showPage(page);
+  function getPageFromHash() {
+    const hash = (window.location.hash || "").replace("#", "").trim();
+    return hash || "home";
+  }
 
-    // Optional: update URL hash
-    if (page === "home") {
-      history.replaceState(null, "", "#home");
-    } else {
-      history.replaceState(null, "", `#${page}`);
-    }
+  // Click handling
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const page = a.getAttribute("data-page-link") || "home";
+
+      // Update URL hash (this also makes refresh/back/forward work)
+      window.location.hash = page;
+      showPage(page);
+    });
   });
-});
 
-// Load from hash on refresh
-const initial = (location.hash || "#home").replace("#", "");
-showPage(initial);
+  // Handle refresh + back/forward
+  window.addEventListener("hashchange", () => {
+    showPage(getPageFromHash());
+  });
 
-// Load from hash on refresh
-const initial = (location.hash || "#home").replace("#", "");
-showPage(initial);
+  // Init
+  document.addEventListener("DOMContentLoaded", () => {
+    showPage(getPageFromHash());
+  });
 
+  // ===== Visitor counter (safe) =====
+  document.addEventListener("DOMContentLoaded", () => {
+    const counterEl = document.getElementById("visitor-count");
+    if (!counterEl) return; // If you didn't add it in HTML, do nothing.
 
-
-
+    fetch("https://api.countapi.xyz/hit/adib.pro.bd/visits", { cache: "no-store" })
+      .then((res) => {
+        if (!res.ok) throw new Error("Count API request failed");
+        return res.json();
+      })
+      .then((data) => {
+        const val = typeof data?.value === "number" ? data.value : null;
+        counterEl.textContent = val !== null ? String(val) : "—";
+      })
+      .catch(() => {
+        counterEl.textContent = "—";
+      });
+  });
+})();
