@@ -1,21 +1,19 @@
-# Adib's Portfolio Website
-### This is my portfolio website.
-### sub-domain from ready.bd
+# ◈ Adib's Portfolio Website
 
+#### ✓ This is my portfolio website, sub-domain from ready.bd
 
-## visit my website
-Main Website: https://www.adib.pro.bd/
+## visit my website ⇲
 
-Cloudflare: https://adib-portfolio.pages.dev  
+**Main Website:** https://www.adib.pro.bd/
 
-Vercel: https://adib-portfolio-lemon.vercel.app
+**Cloudflare:** https://adib-portfolio.pages.dev
 
+**Vercel:** https://adib-portfolio-lemon.vercel.app
 
 # Release Notes
+
 ## Version 1.0.0
-
 **Release Date:** February, 2026
-
 
 ## Overview
 
