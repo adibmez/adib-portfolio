@@ -528,3 +528,124 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+
+.spc {
+  height: 50px;
+}
+
+
+/* MOBILE OPTIMIZATION (≤480px) */
+
+@media (max-width: 480px) {
+  /* Layout spacing */
+  .page {
+    padding: 18px 14px 28px;
+  }
+
+  .card {
+    padding: 26px 18px;
+    border-radius: 14px;
+  }
+
+  /* Header */
+  .header {
+    gap: 10px;
+    padding: 8px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav {
+    gap: 18px;
+    justify-content: center;
+  }
+
+  .nav a {
+    font-size: 13px;
+    padding: 10px 4px;
+  }
+
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* HERO */
+  .hero {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .headline {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .accent {
+    font-size: 20px;
+  }
+
+  .subtext {
+    font-size: 14px;
+  }
+
+  .accent-wrap {
+    justify-content: center;
+  }
+
+  .photo-wrap {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Form usability */
+  .cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta input,
+  .cta button,
+  .primary-btn {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  /* Prevent Android zoom on input */
+  input,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Cards & panels */
+  .work-card,
+  .panel {
+    padding: 16px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Typography */
+  .page-head h2 {
+    font-size: 26px;
+  }
+
+  .page-head p {
+    font-size: 14px;
+  }
+
+  /* Performance */
+  .confetti {
+    display: none;
+  }
+}
